@@ -1,0 +1,30 @@
+{{ partial "header.html" . }}
+<span id="sidebar-toggle-span">
+  <a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
+</span>
+
+    <main aria-role="main">
+      <header class="homepage-header">
+        <h1>{{.Title}}</h1>
+        {{ with .Site.Params.subtitle }}
+        <span class="subtitle">{{.}}</span>
+        {{ end }}
+      </header>
+      <div class="homepage-content">
+        <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+        {{.Content}}
+      </div>
+      <div>
+        <!-- Note that .Data.Pages is the equivalent of .Site.Pages on the homepage template. -->
+	<ul>
+	<!-- Ranges through content/post/*.md -->
+        {{ range .Data.Pages }}
+          <li>
+		<a href="{{.RelPermalink}}">{{.Title}}</a>
+          </li>
+	{{ end }}
+	</ul>
+      </div>
+    </main>
+
+{{ partial "footer.html" . }}

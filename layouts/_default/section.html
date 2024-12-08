@@ -1,0 +1,24 @@
+{{ partial "header.html" . }}
+
+{{ .Content }}
+
+    <ul>
+    {{ range .Sections }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+    {{ end }}
+    </ul>
+
+    <ul>
+    {{ range .Data.Pages }}
+        {{- if not .IsSection -}}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }} &mdash; {{ partial "aname.html" .Params.Author }}</a>
+        </li>
+        {{- end -}}
+    {{ end }}
+    </ul>
+
+{{ partial "footer.html" . }}
+

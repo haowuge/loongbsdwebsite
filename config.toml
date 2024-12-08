@@ -1,0 +1,17 @@
+baseURL = "https://loongbsd.bitmoe.org/"
+languageCode = "zh-cn"
+title = "LoongBSD Group Messages"
+publishDir = "../LoongBSDWebsite"
+pluralizeListTitles = false
+theme = "hugo-theme-learn"
+preserveTaxonomyNames = true
+
+[permalinks]
+  post = "/:year/:title/"
+
+[params]
+  subtitle = "你好，LoongBSD 用户组！ | Hello LoongBSD Group!"
+  themeVariant = "red"
+
+[taxonomies]
+  author = "author"

@@ -1,0 +1,28 @@
+{{ if (reflect.IsSlice .Params.Author) }}
+  {{ range $index, $author := .Params.Author }}
+    {{- if eq $index (sub ( len $.Params.Author ) 1 ) }}, and {{ else if gt $index 0 }}, {{ end -}}
+    {{ if ($.Site.GetPage (printf "/author/%s" $author )) }}
+      {{ with $.Site.GetPage (printf "/author/%s" $author ) -}}
+	<a href="{{ .RelPermalink }}">{{ $author }}</a>
+      {{- end -}}
+    {{ else if ($.Site.GetPage (printf "/author/%s" ( $author | urlize )))}}
+      {{ with $.Site.GetPage (printf "/author/%s" ( $author | urlize )) -}}
+	<a href="{{ .RelPermalink }}">{{ $author }}</a>
+      {{- end -}}
+    {{ else }}
+      {{ $author }}
+    {{ end}}
+  {{- end -}}
+{{ else }}
+  {{ if ($.Site.GetPage (printf "/author/%s" .Params.Author )) }}
+    {{ with $.Site.GetPage (printf "/author/%s" .Params.Author ) -}}
+      <a href="{{ .RelPermalink }}">{{ $.Params.Author }}</a>
+    {{- end -}}
+  {{ else if ($.Site.GetPage (printf "/author/%s" ( .Params.Author | urlize )))}}
+    {{ with $.Site.GetPage (printf "/author/%s" ( .Params.Author | urlize )) -}}
+      <a href="{{ .RelPermalink }}">{{ $.Params.Author }}</a>
+    {{- end -}}
+  {{ else }}
+    {{ .Params.Author }}
+  {{ end}}
+{{ end }}
